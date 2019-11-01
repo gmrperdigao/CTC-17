@@ -35,7 +35,6 @@ class Tabuleiro:
     # Todas as localizacoes sao identificadas por um par (x,y)
     def __init__(self, bordas, pit, wumpus, ouro, inicio):
         self.acoes = ["norte", "sul", "leste", "oeste"]
-        self.celulas = []
         self.bordas = bordas
         self.pocos = pit
         self.wumpus = wumpus
@@ -50,11 +49,10 @@ class Tabuleiro:
         y = max(self.bordas, key=itemgetter(1))
         tupla = ()
         celulas = []
-        for i in range(x[0] + 1):
-            for j in range(y[1] + 1):
+        for i in range(1, x[0] + 1):
+            for j in range(1, y[1] + 1):
                 tupla = (i, j)
-                if tupla not in self.bordas:
-                    celulas.append(tupla)
+                celulas.append(tupla)
         return celulas
 
     def recompensa(self, estado):
